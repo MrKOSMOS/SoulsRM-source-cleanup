@@ -1,6 +1,7 @@
 # SoulsRM-source-cleanup
 Cleanup of the Souls Remastered game source code by Retrobytes Productions, as well as compatibility (specifically the keypress check) for my TC2048 in particular (and every other TC2048 out there)
-The available source code doesn't seem to have any license attached, so neither does this code.
+The code has been indented consistently, the sprites have been turned into binary for better visualization and the 'END IF's of single-line IFs have been removed for simplicity, given there is compiler compatibility.
+The available source code doesn't seem to have any license attached, so neither does this one.
 
 Retrobytes productions: https://retrobytesproductions.blogspot.com/
 
