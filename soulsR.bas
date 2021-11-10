@@ -830,6 +830,7 @@ sub borraprota(xsub AS BYTE, ysub AS BYTE, lado AS UBYTE):rem ------------------
          IF abs(xsub-xcur)=2 THEN print at ycur,xcur+4;ink c2;"\b":print at ycur+1,xcur+4;ink c5;"\e":print at ycur+2,xcur+4;ink c8;"\h":END IF
       END IF   
    END IF
+   
    IF lado=4 THEN
       IF ycur>=ysub THEN   
          IF abs(ysub-ycur)=0 THEN print at ycur+2,xcur;ink c7;"\g";ink c8;"\h";ink c9;"\i":END IF
@@ -842,6 +843,7 @@ sub borraprota(xsub AS BYTE, ysub AS BYTE, lado AS UBYTE):rem ------------------
          IF abs(ysub-ycur)=2 THEN print at ycur+4,xcur;ink c4;"\d";ink c5;"\e";ink c6;"\f":END IF
       END IF   
    END IF
+   
    IF lado=3 THEN
       IF ycur<=ysub THEN
          IF abs(ysub-ycur)=0 THEN print at ycur,xcur;ink c1;"\a";ink c2;"\b";ink c3;"\c":END IF
