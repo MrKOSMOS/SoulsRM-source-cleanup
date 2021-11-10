@@ -1,5 +1,5 @@
 # SoulsRM source cleanup
-Cleanup of the Souls Remastered game source code by Retrobytes Productions, as well as compatibility (specifically the keypress check) for my TC2048 in particular (and every other TC2048 out there)
+Cleanup of the Souls Remastered game source code by Retrobytes Productions, as well as compatibility (specifically the keypress check) for my TC2048 in particular (and every other TC2048 out there, for that matter)
 
 The code has been indented consistently, the sprites have been turned into binary for better visualization and the 'END IF's of single-line IFs have been removed for simplicity, given there is compiler compatibility. Further code simplification is planned.
 
@@ -17,4 +17,4 @@ The Timex Computer 2048: https://en.wikipedia.org/wiki/Timex_Computer_2048
 
 --------------------------------------------------------------------------------------------------------------------------------------
 
-Currently struggling with the ZXBasic compiler, which is why there are so many 'END IF's with :rem's before them; bug report in progress 
+Currently struggling with the ZXBasic compiler, which is why there are so many 'END IF's with :rem's before them; bug report --in progress-- submitted
