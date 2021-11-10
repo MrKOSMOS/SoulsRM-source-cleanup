@@ -1,7 +1,7 @@
 # SoulsRM source cleanup
 Cleanup of the Souls Remastered game source code by Retrobytes Productions, as well as compatibility (specifically the keypress check) for my TC2048 in particular (and every other TC2048 out there, for that matter)
 
-The code has been indented consistently, the sprite bitmap values have been turned into binary for better visualization and editability and the 'END IF's of single-line IFs have been removed for simplicity, given that the ZXBasi compiler allows that. Further code simplification and optimization is planned.
+The code has been indented consistently, the sprite bitmap values have been turned into binary for better visualization and editability and the 'END IF's of single-line IFs have been removed for simplicity, given that the ZXBasic compiler allows that. Further code simplification and optimization is planned.
 
 The available source code doesn't seem to have any license attached, so neither does this one.
 
