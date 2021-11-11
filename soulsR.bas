@@ -38,11 +38,11 @@ DIM tablaenemtmp(89)AS UBYTE=>{_
 DIM enemigo,contani,topecontani,contanienem,topecontanienem,pant,ataca,atacaenem,retirada,parado,escudo,energia,magia,estamina,topenergia,nivel,souls,llaves,c1,c2,c3,c4,c5,c6,c7,c8,c9 AS UBYTE
 DIM energiaenem,energiatmp,energiajefe,xx,yy,cae,sube,tile,xcur,ycur,xh,yh,panth,pantsouls,soulstmp,contdisparo,contbola,disparando,xb,yb,contb,tipo,magiamago AS UBYTE
 
-pant=80                  :rem número de pantalla
+pant=80                  :rem nÃºmero de pantalla
 nivel=1                  :rem nivel de experiencia del caballero
 souls=0                  :rem almas recogidas (18 es el tope)
-soulstmp=0               :rem almas que se te han caído
-pantsouls=0              :rem pantalla donde se te han caído las almas
+soulstmp=0               :rem almas que se te han caÃ­do
+pantsouls=0              :rem pantalla donde se te han caÃ­do las almas
 enemigo=0                :rem 1=hay enemigo en pantalla
 
 contani=0                :rem contador animacion caballero
@@ -90,7 +90,7 @@ ink 7
 IF dir=1  THEN POKE UINTEGER iniUDGS,@caballero3(ani):print at y,x;"\{i7}\a\b\c":print at y+1,x;"\{i7}\d\{i6}\e\f":print at y+2,x;"\{i7}\g\{i6}\h\i":END IF
 IF dir=-1 THEN POKE UINTEGER iniUDGS,@caballero3(ani+72):print at y,x;"\{i7}\a\b\c":print at y+1,x;"\{i7}\d\{i6}\e\f":print at y+2,x;"\{i7}\g\{i6}\h\i":END IF
 
-10 : rem --------------- bucle //Crashes somewhere after here
+10 : rem --------------- bucle
 
 IF enemigo=1 THEN enemesq():ELSE:mipause(6):END IF
 
@@ -226,7 +226,7 @@ IF ataca=0 THEN
          borraprota(x,y,1)
          IF ani=432 THEN ani=0      :rem apply shiftr and use 1-digit ani
          IF ani=216 or ani=0 THEN beep 0.0025,-20
-         IF enemigo=1  THEN :rem -------------------------------------detecta el choque con el enemigo según el tipo por la derecha
+         IF enemigo=1  THEN :rem -------------------------------------detecta el choque con el enemigo segÃºn el tipo por la derecha
 :rem       IF xesq<>x+3 THEN x=x+1:ELSE  :rem condensed common in beginning
             IF tipo=1 THEN
                IF y<>yesq THEN x=x+1
@@ -292,7 +292,7 @@ IF ataca=0 THEN
             IF ani=432 THEN ani=0
             IF ani=216 or ani=0 THEN beep 0.0025,-20
        
-            IF enemigo=0 THEN :rem --------------------------------- detecta el choque con el enemigo según el tipo por la izquierda
+            IF enemigo=0 THEN :rem --------------------------------- detecta el choque con el enemigo segÃºn el tipo por la izquierda
                x=x-1
 :rem            ELSE 
 IF enemigo=1 THEN
@@ -924,7 +924,7 @@ IF tile=34 THEN POKE UINTEGER iniUDGS,@paredcastizq(0):c1=4:c2=4:c3=7:c4=4:c5=4:
 IF tile=35 THEN POKE UINTEGER iniUDGS,@ojojefe(0):c1=7:c2=6:c3=5:c4=7:c5=6:c6=5:c7=7:c8=6:c9=5:END IF :rem colmillo
 IF tile=36 THEN POKE UINTEGER iniUDGS,@garraizq(0):c1=4:c2=4:c3=6:c4=4:c5=6:c6=6:c7=5:c8=7:c9=7:END IF :rem garra izquierda
 IF tile=37 THEN POKE UINTEGER iniUDGS,@garradrch(0):c1=6:c2=4:c3=4:c4=6:c5=6:c6=4:c7=7:c8=7:c9=5:END IF :rem garra derecha
-IF tile=38 THEN POKE UINTEGER iniUDGS,@mago(0):c1=5:c2=7:c3=7:c4=5:c5=5:c6=7:c7=5:c8=5:c9=7:END IF :rem mago que te enseña a usar la magia
+IF tile=38 THEN POKE UINTEGER iniUDGS,@mago(0):c1=5:c2=7:c3=7:c4=5:c5=5:c6=7:c7=5:c8=5:c9=7:END IF :rem mago que te enseÃ±a a usar la magia
 IF tile=39 THEN POKE UINTEGER iniUDGS,@puertarocaizq(0):c1=7:c2=5:c3=5:c4=7:c5=5:c6=5:c7=5:c8=5:c9=5:END IF :rem puerta de roca hacia la izquierda
 IF tile=40 THEN POKE UINTEGER iniUDGS,@puertarocadrch(0):c1=5:c2=5:c3=7:c4=5:c5=5:c6=7:c7=5:c8=5:c9=5:END IF :rem puerta de roca hacia la derecha
 IF tile=41 THEN POKE UINTEGER iniUDGS,@ladrillos(0):c1=7:c2=7:c3=7:c4=7:c5=7:c6=7:c7=7:c8=7:c9=7:END IF :rem ladrillos de fondo blancos(no traspasables)
@@ -960,7 +960,7 @@ FOR yy=0 TO 5  :rem --------------------- pinta la pantalla
 NEXT yy
 
 IF tablaenem(pant)<>0 THEN  :rem ------ mira en la tabla si ha de poner un enemigo    
-    IF pant=71 or pant=53 or pant=55 or pant=20 or pant=37 or pant=66 or pant=68 or pant=29 or pant=18 or pant=19 or pant=43 THEN :REM --- según la pantalla los enemigos miran hacia un lado o otro
+    IF pant=71 or pant=53 or pant=55 or pant=20 or pant=37 or pant=66 or pant=68 or pant=29 or pant=18 or pant=19 or pant=43 THEN :REM --- segÃºn la pantalla los enemigos miran hacia un lado o otro
        direnem=1
 :rem    ELSE 
        direnem=-1
