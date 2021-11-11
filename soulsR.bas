@@ -13,7 +13,7 @@ anisube=0
 anienem=0
 topcontestamina=200      :rem cuanto mas nivel el tope sube y te cansas menos
 
-DIM tablaenem(89)AS UBYTE=>{_
+DIM tablaenem(89) AS UBYTE=>{_
 0,1,3,3,  3,3,0,3,  1,0,_
 0,0,  0,1,0,1,  2,2,1,3,_
 3,0,1,0,  0,3,0,3,  0,3,_
@@ -24,7 +24,7 @@ DIM tablaenem(89)AS UBYTE=>{_
 0,1,  0,1,1,2,  0,0,0,0,_
 0,0,1,0,  2,2,2,2,  2,0} :rem ------------------------- tabla donde hay enemigos  //copy at start?
 
-DIM tablaenemtmp(89)AS UBYTE=>{_
+DIM tablaenemtmp(89) AS UBYTE=>{_
 0,1,3,3,3,3,0,3,1,0,_
 0,0,0,1,0,1,2,2,1,3,_
 3,0,1,0,0,3,0,3,0,3,_
@@ -36,7 +36,9 @@ DIM tablaenemtmp(89)AS UBYTE=>{_
 0,0,1,0,2,2,2,2,2,0} :rem -------------------------- tabla para recargar enemigos
 
 DIM enemigo,contani,topecontani,contanienem,topecontanienem,pant,ataca,atacaenem,retirada,parado,escudo,energia,magia,estamina,topenergia,nivel,souls,llaves,c1,c2,c3,c4,c5,c6,c7,c8,c9 AS UBYTE
-DIM energiaenem,energiatmp,energiajefe,xx,yy,cae,sube,tile,xcur,ycur,xh,yh,panth,pantsouls,soulstmp,contdisparo,contbola,disparando,xb,yb,contb,tipo,magiamago AS UBYTE
+DIM energiaenem,energiatmp,energiajefe,keytemp,xx,yy,cae,sube,tile,xcur,ycur,xh,yh,panth,pantsouls,soulstmp,contdisparo,contbola,disparando,xb,yb,contb,tipo,magiamago AS UBYTE
+
+keytemp=0                :rem keyboard port check 'cache'
 
 pant=80                  :rem número de pantalla
 nivel=1                  :rem nivel de experiencia del caballero
@@ -185,7 +187,8 @@ IF cae=1 THEN
 END IF
 
 IF ataca=0 THEN
-   IF (IN 57342=254 or IN 57342=190 or inkey$="p") and cae=0 and sube=0 THEN :rem --- tecla P
+   keytemp=IN 57342
+   IF (keytemp=254 or keytemp=190 or inkey$="p") and cae=0 and sube=0 THEN :rem --- tecla P
       contani=contani+1
       contestamina=contestamina+1
       dir=1
@@ -256,7 +259,8 @@ IF ataca=0 THEN
          imprime()         
       END IF
    ELSE
-      IF (IN 57342=253 or IN 57342=189 or inkey$="o") and cae=0 and sube=0 THEN :rem --- tecla O
+      keytemp=IN 57342                        :rem port used twice (before as well) 
+      IF (keytemp=253 or keytemp=189 or inkey$="o") and cae=0 and sube=0 THEN :rem --- tecla O
          contani=contani+1
          contestamina=contestamina+1
          dir=-1
@@ -322,7 +326,8 @@ IF ataca=0 THEN
             imprime()
          END IF
       ELSE :rem ---------------------------------------------------------- parado
-         IF estamina<12 and sube=0 and not (IN 32766=190 OR IN 32766=254 or inkey$=" ") THEN contestamina=contestamina+5    :rem ------------------------ controla el cansancio al moverse
+         keytemp=IN 32766
+         IF estamina<12 and sube=0 and not (keytemp=190 OR keytemp=254 or inkey$=" ") THEN contestamina=contestamina+5    :rem ------------------------ controla el cansancio al moverse
             IF contestamina>=topcontestamina THEN POKE UINTEGER iniUDGS,@vidamagiaestamina(0):contestamina=0:estamina=estamina+1:print at 21,estamina-1;"\{b1}\{i4}\a":topecontani=topecontani-1:END IF
          END IF      
          IF sube=0 THEN contani=0
@@ -338,7 +343,8 @@ IF ataca=0 THEN
    END IF
 END IF
 
-IF (IN 64510=254 OR IN 64510=190 or inkey$="q") and ataca=0 and parado=1 THEN :rem ----- TECLA Q ---------------- se protege y mira si puede subir  //condense ataca=0
+keytemp=IN 64510
+IF (keytemp=254 OR keytemp=190 or inkey$="q") and ataca=0 and parado=1 THEN :rem ----- TECLA Q ---------------- se protege y mira si puede subir  //condense ataca=0
 
    IF mapa(pant,y/3,x/3)=1 and mapa(pant,y/3,(x+1)/3)=1 and mapa(pant,y/3,(x+2)/3)=1 and sube=0 THEN :rem ----- mira si puede subir escaleraxs
       sube=1:contani=0
@@ -387,7 +393,8 @@ ELSE
    END IF
 END IF
 
-IF (IN 65022=254 OR IN 65022=190 or inkey$="a") and ataca=0 THEN :rem ---------- TECLA A ----------------------------- mira si puede bajar
+keytemp=IN 65022
+IF (keytemp=254 OR keytemp=190 or inkey$="a") and ataca=0 THEN :rem ---------- TECLA A ----------------------------- mira si puede bajar
    IF mapa(pant,(y+3)/3,x/3)=21 and mapa(pant,(y+3)/3,(x+1)/3)=21 and mapa(pant,(y+3)/3,(x+2)/3)=21 and sube=0 THEN :rem ----- mira si puede subir escaleras
        sube=1:contani=0
        POKE UINTEGER iniUDGS,@caballerosube(ani)
@@ -429,7 +436,8 @@ IF (IN 65022=254 OR IN 65022=190 or inkey$="a") and ataca=0 THEN :rem ----------
    END IF
 END IF
 
-IF (IN 32766=190 OR IN 32766=254 or inkey$=" ") and ataca=0 and sube=0 THEN ataca=1:ani=0:contani=0:END IF :rem ----- TECLA SPACE ----- ataca
+keytemp=IN 32766
+IF (keytemp=190 OR keytemp=254 or inkey$=" ") and ataca=0 and sube=0 THEN ataca=1:ani=0:contani=0:END IF :rem ----- TECLA SPACE ----- ataca
 
 IF ataca=1 THEN contani=contani+1
    IF contani>=topecontani THEN contani=0
@@ -522,7 +530,8 @@ IF ataca=1 THEN contani=contani+1
    END IF
 END IF
 
-IF (IN 32766=251 or IN 32766=187 or inkey$="m") and magiamago=1 THEN : rem ----------- TECLA M -------------------------------- lanza la magia
+keytemp=IN 32766                              :rem port used thrice!!! 
+IF (keytemp=251 or keytemp=187 or inkey$="m") and magiamago=1 THEN : rem ----------- TECLA M -------------------------------- lanza la magia
    IF magia>0 THEN
       print at 23,magia-1;" ":magia=magia-1
       beep 0.05,-30:border 1:beep 0.05,0:border 0:beep 0.05,-30:border 1
