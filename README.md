@@ -17,4 +17,4 @@ The Timex Computer 2048: https://en.wikipedia.org/wiki/Timex_Computer_2048
 
 --------------------------------------------------------------------------------------------------------------------------------------
 
-Currently struggling with the ZXBasic compiler, which is why there are so many 'END IF's with :rem's before them; bug report ~~in progress~~ submitted
+~~Currently struggling with the ZXBasic compiler, which is why there are so many 'END IF's with :rem's before them;~~ Code compiles (with bugs) after particular modifications. Bug report ~~in progress~~ ~~submitted~~ probably being extended and delivered to the ZXBasic forum
